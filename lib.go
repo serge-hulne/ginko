@@ -14,7 +14,7 @@ type Response = http.ResponseWriter
 type Request = *http.Request
 type ActionMap = map[string]func(Response, Request)
 
-var display = fmt.Fprint
+var Display = fmt.Fprint
 
 func run_server(action ActionMap) {
 	for k, v := range action {
@@ -25,7 +25,7 @@ func run_server(action ActionMap) {
 	}
 }
 
-func run_app(title, port string, Action ActionMap) {
+func Run_app(title, port string, Action ActionMap) {
 	go func() {
 		run_server(Action)
 	}()
