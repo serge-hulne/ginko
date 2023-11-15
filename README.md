@@ -62,5 +62,6 @@ func main() {
 ```
 
 # Use
-1. go get -u github.com/serge-hulne/ginko
-2. go build
+1. go mod init App
+2. go get -u github.com/serge-hulne/ginko
+3. go build
