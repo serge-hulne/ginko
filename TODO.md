@@ -1,0 +1,6 @@
+- [] Publish as go package
+- [] .gitignore
+- [] Header (+menu) and footer element (CSS)
+- [] Layout w3CSS
+- [] Single page app: pseudo-Routing using w3CSS tabs
+- [] File manager widget
