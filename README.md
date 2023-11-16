@@ -100,3 +100,99 @@ to compile from a Mac M1 to a "classical" Mac intel:
 # licence 
 MIT
 
+# Additional examples
+
+Todo-list app:
+
+```go
+
+package main
+
+import (
+	"fmt"
+	"net/http"
+	"strings"
+
+	. "github.com/julvo/htmlgo"
+	a "github.com/julvo/htmlgo/attributes"
+	g "github.com/serge-hulne/ginko"
+)
+
+// Endpoints
+const (
+	_addTodo = "/add-todo"
+)
+
+// State
+var todoList []string
+
+// root renders the home page with the to-do form and list
+func root(w g.Response, req g.Request) {
+	page :=
+		Html5_(
+			g.HeadHTMX(),
+			Body_(
+				Form(
+					Attr(a.Action(_addTodo), a.Method("post")),
+					// To-do input
+					Input(Attr(a.Type("text"), a.Name("todoItem"), a.Placeholder("Add new item"), a.Id("todo-input"))),
+					Br_(),
+					// Add button with HTMX attributes
+					g.ButtonHTMX(_addTodo, "#todo-list", "add", "Add a todo"),
+				),
+				Div(
+					Attr(a.Id("todo-list")),
+					renderTodoList(),
+				),
+			),
+		)
+	g.Display(w, string(page))
+}
+
+// renderTodoList renders the current state of the to-do list
+func renderTodoList() HTML {
+	var sb strings.Builder
+	for _, item := range todoList {
+		sb.WriteString(fmt.Sprintf("<div>%s</div>", item))
+	}
+	if len(todoList) == 0 {
+		return Div(
+			Attr(a.Id("todo-list")), HTML(""),
+		)
+	}
+	return Div(
+		Attr(a.Id("todo-list")),
+		HTML(sb.String()),
+	)
+}
+
+// addTodo handles adding a new item to the to-do list
+func addTodo(w g.Response, req g.Request) {
+	if err := req.ParseForm(); err != nil {
+		http.Error(w, "Error parsing form", http.StatusBadRequest)
+		return
+	}
+	todoItem := req.FormValue("todoItem")
+	todoList = append(todoList, todoItem)
+
+	// Print the todoList for debugging
+	fmt.Println("Current Todo List:", todoList)
+
+	// Display only the updated todo list, not the entire page
+	g.Display(w, renderTodoList())
+}
+
+// Registering actions
+var action = g.ActionMap{
+	_addTodo: addTodo,
+	"/":      root,
+}
+
+// Running the app
+func main() {
+	g.Run_app("To-Do List App", "8090", action)
+}
+
+```
+
+
