@@ -1,4 +1,6 @@
 # Ginko
+Please note, this is an Alpha version
+
 Go package for creating lightweight desktop apps simply and quickly in pure Go.
 - Easy development (familiar HTML-like syntax for the UI).
 - Easy cross-compiling for all OS and or architecture.
