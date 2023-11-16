@@ -1,7 +1,7 @@
 # Ginko
 Go package for creating lightweight desktop apps simply and quickly in pure Go.
 - Easy development (familiar HTML-like syntax for the UI).
-- Easy cross-compiling for all OS and or architechture.
+- Easy cross-compiling for all OS and or architecture.
 - Uses WebView for front-end rendering, but *does not require* JS or CSS.
 - Compiles into a single binary executable, statically compiled.
 - Distributed as a single executable file without dependencies.
@@ -11,7 +11,7 @@ Go package for creating lightweight desktop apps simply and quickly in pure Go.
 
 # Example
 
-```
+```go
 package main
 
 import (
@@ -75,7 +75,7 @@ func main() {
 - All the dependencies are installed automatically, via `go get` (see example, hereunder).
 
 # Use
-1. create a new direcory : `mkdir MyApp`
+1. create a new directory : `mkdir MyApp`
 2. `cd MyApp`
 3. `go mod init App`
 5. copy the example above in the current directory MyApp 
