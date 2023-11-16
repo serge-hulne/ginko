@@ -31,6 +31,7 @@ const (
 	_update_content = "/update-content"
 )
 
+// example of Ajax call with HTMX syntax
 func updateContent(w Response, req Request) {
 	counter++
 	newContent := ButtonHTMX(_update_content,
@@ -41,7 +42,7 @@ func updateContent(w Response, req Request) {
 	Display(w, newContent)
 }
 
-// Home page
+// Home page (example of htmlgo syntax for the UI)
 func root(w Response, req Request) {
 	page :=
 		Html5_(
