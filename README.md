@@ -1,5 +1,5 @@
 # Ginko
-Go package for creating lightweight desktop apps simply and quickly.
+Go package for creating lightweight desktop apps simply and quickly in pure Go.
 - Easy development (familiar HTML-like syntax for the UI).
 - Easy cross-compiling for all OS and or architechture.
 - Uses WebView for front-end rendering, but *does not require* JS or CSS.
