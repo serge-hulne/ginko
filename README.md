@@ -70,7 +70,7 @@ func main() {
 
 # Dependencies
 - Uses WebView.
-- Requires Go and a C/C++ toolchain (for example Xcode on Mac), because Go connects to WebView via cgo.
+- Requires Go and a C/C++ toolchain (for example Xcode on Mac), as Go connects to WebView via cgo.
 - All the dependencies are installed automatically, via `go get` (see example, hereunder).
 
 # Use
