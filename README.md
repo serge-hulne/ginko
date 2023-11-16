@@ -1,6 +1,9 @@
 # Ginko
 Go package for creating lightweight desktop apps simply and quickly.
 
+![Screenshot 2023-11-16 at 10 06 37](https://github.com/serge-hulne/ginko/assets/303502/5cd2aeaf-3f0e-415e-854b-dc0f72b1feb3)
+
+
 # Example
 
 ```
