@@ -64,6 +64,11 @@ func main() {
 
 ```
 
+# Dependencies
+- Uses WebView.
+- Requires Go and a C/C++ toolchain (for example Xcode on Mac), because Go connectis to WebView via cgo.
+- All the dependencies are installed automatically, via go get (see hereunder).
+
 # Use
 1. create a new direcory : mkdir MyApp
 2. cd MyApp
