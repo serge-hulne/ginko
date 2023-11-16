@@ -1,5 +1,9 @@
 # Ginko
 Go package for creating lightweight desktop apps simply and quickly.
+- Easay development (familiar HTML-likesyntax for the UI).
+- Esay cross-compiling for all OS and or architechture.
+- No JS ncessary.
+- CSS is optional (not necessary).
 
 ![Screenshot 2023-11-16 at 10 06 37](https://github.com/serge-hulne/ginko/assets/303502/5cd2aeaf-3f0e-415e-854b-dc0f72b1feb3)
 
@@ -77,6 +81,9 @@ func main() {
 6. go get -u github.com/serge-hulne/ginko
 7. go build
 8. ./App
+
+# Cross compilation example
+CGO_ENABLED=1 GOOS=darwin GOARCH=amd64 go build -o app-amd64-darwin app.go
 
 # licence 
 MIT
