@@ -85,7 +85,8 @@ func main() {
 
 # Cross compilation example
 to compile from a Mac M1 to a "classical" Mac intel:
-CGO_ENABLED=1 GOOS=darwin GOARCH=amd64 go build -o app-amd64-darwin app.go
+
+`CGO_ENABLED=1 GOOS=darwin GOARCH=amd64 go build -o app-amd64-darwin app.go`
 
 # licence 
 MIT
