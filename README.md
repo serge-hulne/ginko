@@ -1,8 +1,8 @@
 # Ginko
 Go package for creating lightweight desktop apps simply and quickly.
-- Easay development (familiar HTML-likesyntax for the UI).
-- Esay cross-compiling for all OS and or architechture.
-- No JS ncessary.
+- Easy development (familiar HTML-likesyntax for the UI).
+- Easy cross-compiling for all OS and or architechture.
+- No JS necessary.
 - CSS is optional (not necessary).
 
 ![Screenshot 2023-11-16 at 10 06 37](https://github.com/serge-hulne/ginko/assets/303502/5cd2aeaf-3f0e-415e-854b-dc0f72b1feb3)
@@ -70,7 +70,7 @@ func main() {
 
 # Dependencies
 - Uses WebView.
-- Requires Go and a C/C++ toolchain (for example Xcode on Mac), because Go connectis to WebView via cgo.
+- Requires Go and a C/C++ toolchain (for example Xcode on Mac), because Go connects to WebView via cgo.
 - All the dependencies are installed automatically, via go get (see hereunder).
 
 # Use
