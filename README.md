@@ -63,5 +63,6 @@ func main() {
 
 # Use
 1. go mod init App
-2. go get -u github.com/serge-hulne/ginko
-3. go build
+2. copy the example above  
+3. go get -u github.com/serge-hulne/ginko
+4. go build
