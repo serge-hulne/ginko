@@ -2,8 +2,9 @@
 Go package for creating lightweight desktop apps simply and quickly.
 - Easy development (familiar HTML-likesyntax for the UI).
 - Easy cross-compiling for all OS and or architechture.
-- No JS necessary.
-- CSS is optional (not necessary).
+- Uses WebView for front-end rendering, but does not require JS or CSS.
+- Compiles into a single binary executable, statically compiled.
+- Distributed as a single executable file without dependencies.
 
 ![Screenshot 2023-11-16 at 10 06 37](https://github.com/serge-hulne/ginko/assets/303502/5cd2aeaf-3f0e-415e-854b-dc0f72b1feb3)
 
