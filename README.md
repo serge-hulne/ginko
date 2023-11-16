@@ -71,16 +71,16 @@ func main() {
 # Dependencies
 - Uses WebView.
 - Requires Go and a C/C++ toolchain (for example Xcode on Mac), because Go connects to WebView via cgo.
-- All the dependencies are installed automatically, via go get (see hereunder).
+- All the dependencies are installed automatically, via `go get` (see example, hereunder).
 
 # Use
 1. create a new direcory : `mkdir MyApp`
-2. cd MyApp
-3. go mod init App
+2. `cd MyApp`
+3. `go mod init App`
 5. copy the example above in the current directory MyApp 
-6. go get -u github.com/serge-hulne/ginko
-7. go build
-8. ./App
+6. `go get -u github.com/serge-hulne/ginko`
+7. `go build`
+8. `./App`
 
 # Cross compilation example
 CGO_ENABLED=1 GOOS=darwin GOARCH=amd64 go build -o app-amd64-darwin app.go
