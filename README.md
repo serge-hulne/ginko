@@ -74,7 +74,7 @@ func main() {
 - All the dependencies are installed automatically, via go get (see hereunder).
 
 # Use
-1. create a new direcory : mkdir MyApp
+1. create a new direcory : `mkdir MyApp`
 2. cd MyApp
 3. go mod init App
 5. copy the example above in the current directory MyApp 
