@@ -68,3 +68,8 @@ func main() {
 5. copy the example above in the current directory MyApp 
 6. go get -u github.com/serge-hulne/ginko
 7. go build
+8. ./App
+
+# licence 
+MIT
+
