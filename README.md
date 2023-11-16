@@ -74,10 +74,10 @@ func main() {
 - Requires Go and a C/C++ toolchain (for example Xcode on Mac), as Go connects to WebView via cgo.
 - All the dependencies are installed automatically, via `go get` (see example, hereunder).
 
-# Uses Htmlgo syntax
+# Uses Htmlgo syntax for layout
 https://github.com/julvo/htmlgo
 
-# Uses HTMX syntax for Ajax calls (inside Htmlgo)
+# Uses HTMX syntax for Ajax calls
 https://htmx.org/docs/
 
 # Use
