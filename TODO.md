@@ -8,3 +8,7 @@
 - [ ] additionally, possibility to add and embed local CSS file
 - [ ] Version for Isomorphic client.
 - [ ] Version for Google Chrome client.
+- [ ] Apps:
+- [ ]   Passwords
+- [ ]   Md to PDF/EPUB/MOBI
+- [ ]   Accents
