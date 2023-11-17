@@ -2,9 +2,9 @@
 - [x] .gitignore
 - [ ] Header (+menu) and footer element (CSS)
 - [x] Layout w3CSS
-- [_] Single page app: pseudo-Routing using w3CSS tabs
-- [_] File manager widget
-- [_] include w3css and HTMX as local files in embedded file system
-- [_] additionally, possibility to add and embed local CSS file
-- [_] Version for Isomorphic client.
-- [_]Version for Google Chrome client.
+- [ ] Single page app: pseudo-Routing using w3CSS tabs
+- [ ] File manager widget
+- [ ] include w3css and HTMX as local files in embedded file system
+- [ ] additionally, possibility to add and embed local CSS file
+- [ ] Version for Isomorphic client.
+- [ ]Version for Google Chrome client.
