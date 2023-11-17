@@ -7,4 +7,4 @@
 - [ ] include w3css and HTMX as local files in embedded file system
 - [ ] additionally, possibility to add and embed local CSS file
 - [ ] Version for Isomorphic client.
-- [ ]Version for Google Chrome client.
+- [ ] Version for Google Chrome client.
