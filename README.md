@@ -105,7 +105,6 @@ MIT
 Todo-list app:
 
 ```go
-
 package main
 
 import (
@@ -132,16 +131,14 @@ func root(w g.Response, req g.Request) {
 		Html5_(
 			g.HeadHTMX(),
 			Body_(
-				Form(
-					Attr(a.Action(_addTodo), a.Method("post")),
-					// To-do input
-					Input(Attr(a.Type("text"), a.Name("todoItem"), a.Placeholder("Add new item"), a.Id("todo-input"))),
-					Br_(),
-					// Add button with HTMX attributes
-					g.ButtonHTMX(_addTodo, "#todo-list", "add", "Add a todo"),
-				),
 				Div(
 					Attr(a.Id("todo-list")),
+					Form(
+						Attr(a.Action(_addTodo), a.Method("post")),
+						Input(Attr(a.Type("text"), a.Name("todoItem"), a.Placeholder("Add new item"), a.Id("todo-input"))),
+						Br_(),
+						g.ButtonHTMX(_addTodo, "#todo-list", "add", "Add a todo"),
+					),
 					renderTodoList(),
 				),
 			),
@@ -162,6 +159,12 @@ func renderTodoList() HTML {
 	}
 	return Div(
 		Attr(a.Id("todo-list")),
+		Form(
+			Attr(a.Action(_addTodo), a.Method("post")),
+			Input(Attr(a.Type("text"), a.Name("todoItem"), a.Placeholder("Add new item"), a.Id("todo-input"))),
+			Br_(),
+			g.ButtonHTMX(_addTodo, "#todo-list", "add", "Add a todo"),
+		),
 		HTML(sb.String()),
 	)
 }
@@ -173,7 +176,9 @@ func addTodo(w g.Response, req g.Request) {
 		return
 	}
 	todoItem := req.FormValue("todoItem")
-	todoList = append(todoList, todoItem)
+	if todoItem != "" {
+		todoList = append(todoList, todoItem)
+	}
 
 	// Print the todoList for debugging
 	fmt.Println("Current Todo List:", todoList)
@@ -192,7 +197,6 @@ var action = g.ActionMap{
 func main() {
 	g.Run_app("To-Do List App", "8090", action)
 }
-
 ```
 
 
