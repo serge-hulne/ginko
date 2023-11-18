@@ -133,12 +133,6 @@ func root(w g.Response, req g.Request) {
 			Body_(
 				Div(
 					Attr(a.Id("todo-list")),
-					Form(
-						Attr(a.Action(_addTodo), a.Method("post")),
-						Input(Attr(a.Type("text"), a.Name("todoItem"), a.Placeholder("Add new item"), a.Id("todo-input"))),
-						Br_(),
-						g.ButtonHTMX(_addTodo, "#todo-list", "add", "Add a todo"),
-					),
 					renderTodoList(),
 				),
 			),
@@ -152,11 +146,6 @@ func renderTodoList() HTML {
 	for _, item := range todoList {
 		sb.WriteString(fmt.Sprintf("<div>%s</div>", item))
 	}
-	if len(todoList) == 0 {
-		return Div(
-			Attr(a.Id("todo-list")), HTML(""),
-		)
-	}
 	return Div(
 		Attr(a.Id("todo-list")),
 		Form(
@@ -167,6 +156,7 @@ func renderTodoList() HTML {
 		),
 		HTML(sb.String()),
 	)
+
 }
 
 // addTodo handles adding a new item to the to-do list
@@ -197,6 +187,7 @@ var action = g.ActionMap{
 func main() {
 	g.Run_app("To-Do List App", "8090", action)
 }
+
 ```
 
 
