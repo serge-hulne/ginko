@@ -18,9 +18,11 @@ package main
 
 import (
 	"fmt"
+	"log"
 
-	. "github.com/julvo/htmlgo"
 	. "github.com/serge-hulne/ginko"
+
+	. "maragu.dev/gomponents/html"
 )
 
 // State
@@ -28,15 +30,10 @@ var (
 	counter int = 0
 )
 
-// Actions
-const (
-	_update_content = "/update-content"
-)
-
 // example of Ajax call with HTMX syntax
 func updateContent(w Response, req Request) {
 	counter++
-	newContent := ButtonHTMX(_update_content,
+	newContent := ButtonHTMX("/update-content",
 		"#content",
 		"content",
 		fmt.Sprint(counter),
@@ -44,30 +41,34 @@ func updateContent(w Response, req Request) {
 	Display(w, newContent)
 }
 
-// Home page (example of htmlgo syntax for the UI)
+// Home page (example of gomponents syntax for the UI)
 func root(w Response, req Request) {
 	page :=
-		Html5_(
-			HeadHTMX(),
-			Body_(
-				ButtonHTMX(_update_content,
-					"#content",
-					"content",
-					"0"),
+		Doctype(
+			HTML(
+				HeadHTMX(),
+				Body(
+					ButtonHTMX("/update-content",
+						"#content",
+						"content",
+						"0"),
+				),
 			),
 		)
-	Display(w, string(page))
+	Display(w, page)
 }
 
 // Registering actions
 var action = ActionMap{
-	_update_content: updateContent,
-	"/":             root,
+	"/update-content": updateContent,
+	"/":               root,
 }
 
 // Running app
 func main() {
-	Run_app("Basic App : Simple counter", "8090", action)
+	if err := Run_app("Basic App : Simple counter", "8090", action); err != nil {
+		log.Fatal(err)
+	}
 }
 
 ```
@@ -77,8 +78,8 @@ func main() {
 - Requires Go and a C/C++ toolchain (for example Xcode on Mac), as Go connects to WebView via cgo.
 - All the dependencies are installed automatically, via `go get` (see example, hereunder).
 
-# Uses Htmlgo syntax for layout
-https://github.com/julvo/htmlgo
+# Uses gomponents syntax for layout
+https://github.com/maragudk/gomponents
 
 # Uses HTMX syntax for Ajax calls
 https://htmx.org/docs/
@@ -109,12 +110,13 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
-	"strings"
+	"sync"
 
-	. "github.com/julvo/htmlgo"
-	a "github.com/julvo/htmlgo/attributes"
-	g "github.com/serge-hulne/ginko"
+	g "maragu.dev/gomponents"
+	. "maragu.dev/gomponents/html"
+	. "github.com/serge-hulne/ginko"
 )
 
 // Endpoints
@@ -123,69 +125,79 @@ const (
 )
 
 // State
-var todoList []string
+var (
+	todoList   []string
+	todoListMu sync.Mutex
+)
 
 // root renders the home page with the to-do form and list
-func root(w g.Response, req g.Request) {
+func root(w Response, req Request) {
 	page :=
-		Html5_(
-			g.HeadHTMX(),
-			Body_(
-				Div(
-					Attr(a.Id("todo-list")),
+		Doctype(
+			HTML(
+				HeadHTMX(),
+				Body(
 					renderTodoList(),
 				),
 			),
 		)
-	g.Display(w, string(page))
+	Display(w, page)
 }
 
 // renderTodoList renders the current state of the to-do list
-func renderTodoList() HTML {
-	var sb strings.Builder
-	for _, item := range todoList {
-		sb.WriteString(fmt.Sprintf("<div>%s</div>", item))
-	}
-	return Div(
-		Attr(a.Id("todo-list")),
-		Form(
-			Attr(a.Action(_addTodo), a.Method("post")),
-			Input(Attr(a.Type("text"), a.Name("todoItem"), a.Placeholder("Add new item"), a.Id("todo-input"))),
-			Br_(),
-			g.ButtonHTMX(_addTodo, "#todo-list", "add", "Add a todo"),
-		),
-		HTML(sb.String()),
-	)
+func renderTodoList() g.Node {
+	todoListMu.Lock()
+	items := append([]string(nil), todoList...)
+	todoListMu.Unlock()
 
+	var itemNodes g.Group
+	for _, item := range items {
+		itemNodes = append(itemNodes, Div(g.Text(item)))
+	}
+
+	return Div(
+		ID("todo-list"),
+		Form(
+			Action(_addTodo), Method("post"),
+			Input(Type("text"), Name("todoItem"), Placeholder("Add new item"), ID("todo-input")),
+			Br(),
+			ButtonHTMX(_addTodo, "#todo-list", "add", "Add a todo"),
+		),
+		itemNodes,
+	)
 }
 
 // addTodo handles adding a new item to the to-do list
-func addTodo(w g.Response, req g.Request) {
+func addTodo(w Response, req Request) {
 	if err := req.ParseForm(); err != nil {
 		http.Error(w, "Error parsing form", http.StatusBadRequest)
 		return
 	}
 	todoItem := req.FormValue("todoItem")
 	if todoItem != "" {
+		todoListMu.Lock()
 		todoList = append(todoList, todoItem)
+		todoListMu.Unlock()
 	}
 
 	// Print the todoList for debugging
 	fmt.Println("Current Todo List:", todoList)
 
 	// Display only the updated todo list, not the entire page
-	g.Display(w, renderTodoList())
+	Display(w, renderTodoList())
 }
 
 // Registering actions
-var action = g.ActionMap{
+var action = ActionMap{
 	_addTodo: addTodo,
 	"/":      root,
 }
 
 // Running the app
 func main() {
-	g.Run_app("To-Do List App", "8090", action)
+	if err := Run_app("To-Do List App", "8090", action); err != nil {
+		log.Fatal(err)
+	}
 }
 
 ```

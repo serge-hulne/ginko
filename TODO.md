@@ -4,7 +4,7 @@
 - [x] Layout w3CSS
 - [ ] Single page app: pseudo-Routing using w3CSS tabs
 - [ ] File manager widget
-- [ ] include w3css and HTMX as local files in embedded file system
+- [x] include w3css and HTMX as local files in embedded file system
 - [ ] additionally, possibility to add and embed local CSS file
 - [ ] Version for Isomorphic client.
 - [ ] Version for Google Chrome client.
