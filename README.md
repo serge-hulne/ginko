@@ -19,6 +19,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"sync"
 
 	. "github.com/serge-hulne/ginko"
 
@@ -27,16 +28,21 @@ import (
 
 // State
 var (
-	counter int = 0
+	counter   int = 0
+	counterMu sync.Mutex
 )
 
 // example of Ajax call with HTMX syntax
 func updateContent(w Response, req Request) {
+	counterMu.Lock()
 	counter++
+	current := counter
+	counterMu.Unlock()
+
 	newContent := ButtonHTMX("/update-content",
 		"#content",
 		"content",
-		fmt.Sprint(counter),
+		fmt.Sprint(current),
 	)
 	Display(w, newContent)
 }
